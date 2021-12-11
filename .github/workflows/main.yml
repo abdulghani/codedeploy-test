@@ -62,5 +62,5 @@ jobs:
         with:
           azure-devops-project-url: https://dev.azure.com/pawjourr/pawjourr
           azure-pipeline-name: codedeploy-test 
-          azure-devops-token: ${{ SECRETES.STAGE_AZURE_DEVOPS_TOKEN }}
+          azure-devops-token: ${{ SECRETS.STAGE_AZURE_DEVOPS_TOKEN }}
     
