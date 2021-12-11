@@ -10,6 +10,7 @@ jobs:
   run_tests:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2
         with:
@@ -30,6 +31,7 @@ jobs:
       REMOTE_HOST: ${{ SECRETS.STAGE_HOST }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2.3.1
         with:
