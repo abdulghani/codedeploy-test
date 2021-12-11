@@ -16,4 +16,4 @@ hooks:
       runas: ubuntu
   ApplicationStart:
     - location: ./.scripts/application-start.sh
-      runas: ubuntuk
+      runas: ubuntu
