@@ -36,7 +36,7 @@ jobs:
         with:
           key: ${{ SECRETS.STAGE_SSH_KEY }}
           name: stage_key
-          known_hosts: ${{ SECRETS.STAGE_HOST }}
+          known_hosts: ${{ SECRETS.STAGE_KNOWN_HOSTS }}
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2
         with:
