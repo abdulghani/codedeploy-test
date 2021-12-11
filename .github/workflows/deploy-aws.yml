@@ -1,0 +1,36 @@
+name: deploy-aws
+
+on:
+  workflow_run:
+    workflows:
+      - checks
+    types:
+      - completed
+    branches:
+      - "*"
+      - "main"
+
+jobs:
+  deploy_staging:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    env:
+      CODEDEPLOY_APP_NAME: codedeploy-test
+      AWS_DEPLOY_GROUP: codedeploy-group
+    steps:
+      - uses: actions/checkout@v2
+        name: checkout
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ SECRETS.STAGE_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ SECRETS.STAGE_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ SECRETS.STAGE_AWS_REGION }}
+      - name: trigger aws codedeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ ENV.CODEDEPLOY_APP_NAME }} \
+            --deployment-config-name CodeDeployDefault.OneAtATime \
+            --deployment-group-name ${{ ENV.AWS_DEPLOY_GROUP }} \
+            --file-exists-behavior OVERWRITE \
+            --githubLocation repository=${{ ENV.GITHUB_REPOSITORY }},commitId=${{ ENV.GITHUB_SHA }} \
