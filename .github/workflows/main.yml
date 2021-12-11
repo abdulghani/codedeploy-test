@@ -45,7 +45,7 @@ jobs:
           aws-region: ${{ SECRETS.STAGE_AWS_REGION }}
       - name: trigger aws codedeploy
         env:
-          AWS_CODE_DEPLOY_APPLICATION_NAME: ${{ SECRETES.STAGE_AWS_CODE_DEPLOY_APP_NAME }}
+          AWS_CODE_DEPLOY_APPLICATION_NAME: ${{ SECRETS.STAGE_AWS_CODE_DEPLOY_APP_NAME }}
           AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ SECRETS.STAGE_AWS_DEPLOY_GROUP }}
           AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.OneAtATime
         run: bash ./.scripts/code-deploy.sh
