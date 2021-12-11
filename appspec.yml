@@ -10,6 +10,9 @@ permissions:
     type:
         - directory
         - file
+
+# READ CODEDEPLOY LIFECYCLE
+# https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html
 hooks:
   AfterInstall:
     - location: ./.scripts/after-install.sh
