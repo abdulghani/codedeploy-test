@@ -26,13 +26,10 @@ jobs:
           aws-access-key-id: ${{ SECRETS.STAGE_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ SECRETS.STAGE_AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ SECRETS.STAGE_AWS_REGION }}
-      - name: install aws cli
-        uses: unfor19/install-aws-cli-action@v1
       - name: trigger aws codedeploy
-        run: |
-          aws deploy create-deployment \
-            --application-name ${{ ENV.CODEDEPLOY_APP_NAME }} \
-            --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name ${{ ENV.AWS_DEPLOY_GROUP }} \
-            --file-exists-behavior OVERWRITE \
-            --github-location repository=$GITHUB_REPOSITORY,commitId=$GITHUB_SHA
+        env:
+          AWS_CODE_DEPLOY_APPLICATION_NAME: ${{ ENV.CODEDEPLOY_APP_NAME }}
+          AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ ENV.AWS_DEPLOY_GROUP }}
+          AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.OneAtATime
+          GIT_COMMIT_ID: $GITHUB_SHA
+        run: bash ./.scripts/code-deploy.sh
