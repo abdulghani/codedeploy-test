@@ -22,7 +22,7 @@ jobs:
 
   deploy_staging:
     needs: 
-      - install_dependencies
+      - run_tests
     environment:
       name: staging
     env:
