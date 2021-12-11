@@ -1,0 +1,19 @@
+version: 0.1
+os: linux
+files:
+    - source: /
+      destination: ~/app
+permissions:
+    - object: ~/app
+      owner: ubuntu
+      group: ubuntu
+      type:
+          - directory
+          - file
+hooks:
+    AfterInstall:
+        - location: .scripts/after_install.sh
+          runas: ubuntu
+    ApplicationStart:
+        - location: .scripts/application_start.sh
+          runas: ubuntu
