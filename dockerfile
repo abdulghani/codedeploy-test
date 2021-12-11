@@ -15,7 +15,7 @@ RUN npm ci --only=production
 
 ## RUNNER
 FROM gcr.io/distroless/nodejs:14
-COPY --from=build ./package*.json /app/
+COPY ./package*.json /app/
 COPY --from=build /app/build /app/build
 COPY --from=package /app/node_modules /app/node_modules
 WORKDIR /app
