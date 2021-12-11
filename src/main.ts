@@ -7,7 +7,7 @@ async function main() {
 
   app.get("/", (req, res) => {
     res.send({
-      message: "hello world",
+      message: "hello there",
       param: req.query,
     });
   });
