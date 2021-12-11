@@ -1,16 +1,11 @@
 import express from "express";
+import createRouter from "./router";
 
 async function main() {
-  const app = express();
-  app.use(express.json());
   const port = 3000;
+  const app = express().use(express.json());
 
-  app.get("/", (req, res) => {
-    res.send({
-      message: "hello there",
-      param: req.query,
-    });
-  });
+  app.use(createRouter());
 
   app.listen(3000, () => console.log("APP RUNNING ON PORT", port));
 }
