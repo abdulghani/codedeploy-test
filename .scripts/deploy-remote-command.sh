@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ""
+echo "RUNNING IN REMOTE HOST"
 cd ~/app
 
 sudo docker --version
