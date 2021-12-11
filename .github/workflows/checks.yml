@@ -1,0 +1,27 @@
+name: checks
+
+on:
+  push:
+    branches:
+      - "*"
+      - "main"
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
+      - name: install dependencies
+        run: npm install
+      - name: run tests
+        run: npm run test
