@@ -45,5 +45,9 @@ jobs:
         run: npm run build:docker
       - name: package image
         run: npm run docker:package
-      - name: deploy
-        run: npm run deploy:stage
+      - name: copy docker-compose file
+        run: scp ./docker-compose.yml "$REMOTE_USER@$REMOTE_HOST:~/app/docker-compose.yml"
+      - name: copy docker image
+        run: scp ./docker_image.tar "$REMOTE_USER@$REMOTE_HOST:~/app/docker_image.tar"
+      - name: run commands on remote
+        run: ssh "$REMOTE_USER@$REMOTE_HOST" "bash -s" < ./.scripts/deploy-remote-command.sh
