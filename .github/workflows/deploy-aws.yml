@@ -31,5 +31,4 @@ jobs:
           AWS_CODE_DEPLOY_APPLICATION_NAME: ${{ ENV.CODEDEPLOY_APP_NAME }}
           AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ ENV.AWS_DEPLOY_GROUP }}
           AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.OneAtATime
-          GIT_COMMIT_ID: $GITHUB_SHA
         run: bash ./.scripts/code-deploy.sh

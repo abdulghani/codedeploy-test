@@ -153,8 +153,8 @@ if [ -z "$GITHUB_REPOSITORY" ]; then
     exit 1
 fi
 
-if [ -z "$GIT_COMMIT_ID" ]; then
-    error "Please set the \"\$GIT_COMMIT_ID\" variable"
+if [ -z "$GITHUB_SHA" ]; then
+    error "Please set the \"\$GITHUB_SHA\" variable"
     exit 1
 fi
 
@@ -508,7 +508,7 @@ fi
 # ----------------------
 h1 "Step 9: Setting up Github location"
 
-GITHUB_LOCATION="repository=$GITHUB_REPOSITORY,commitId=$GIT_COMMIT_ID"
+GITHUB_LOCATION="repository=$GITHUB_REPOSITORY,commitId=$GITHUB_SHA"
 
 
 # ----- Create Deployment -----
