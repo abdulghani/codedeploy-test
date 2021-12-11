@@ -16,5 +16,5 @@ echo "CLEANING UP DOCKER"
 sudo docker system prune --force
 
 echo "CLEANING UP SOURCE FILES"
-cd "$ROOT_PROJECT"; rm -rf ./*; rm -rf .*
+cd "$ROOT_PROJECT"; cd ..; rm -rf ./*
 ls -a
