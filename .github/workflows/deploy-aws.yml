@@ -1,14 +1,14 @@
 name: deploy-aws
 
-on:
-  workflow_run:
-    workflows:
-      - checks
-    types:
-      - completed
-    branches:
-      - "**"
-      - "main"
+# on:
+#   workflow_run:
+#     workflows:
+#       - checks
+#     types:
+#       - completed
+#     branches:
+#       - "**"
+#       - "main"
 
 jobs:
   deploy_staging:
