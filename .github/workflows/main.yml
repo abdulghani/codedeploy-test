@@ -49,3 +49,18 @@ jobs:
           AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ SECRETS.STAGE_AWS_DEPLOY_GROUP }}
           AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.OneAtATime
         run: bash ./.scripts/code-deploy.sh
+
+  deploy_azure:
+    runs-on: ubuntu-latest
+    needs:
+      - run_tests
+    environment:
+      name: stage_azure
+    steps:
+      - name: trigger azure release
+        uses: Azure/pipelines@releases/v1
+        with:
+          azure-devops-project-url: https://dev.azure.com/pawjourr/pawjourr
+          azure-pipeline-name: codedeploy-test 
+          azure-devops-token: ${{ SECRETES.STAGE_AZURE_DEVOPS_TOKEN }}
+    
