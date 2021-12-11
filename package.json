@@ -6,9 +6,11 @@
   "scripts": {
     "build": "rm -rf ./build; tsc --project ./tsconfig.json",
     "build:docker": "docker build . -f ./dockerfile -t abdulghani/codedeploy-test",
+    "docker:package": "docker save -o ./docker_image.tar abdulghani/codedeploy-test",
     "start:prod": "node ./build/main.js",
     "start:docker": "docker-compose -f ./docker-compose.yml up -d --force-recreate",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy:stage": "bash ./.scripts/deploy.sh",
+    "test": "echo \"No test specified\""
   },
   "keywords": [],
   "author": "",
