@@ -14,3 +14,7 @@ sudo docker-compose -f ./docker-compose.yml up -d --force-recreate
 
 echo "CLEANING UP DOCKER"
 sudo docker system prune --force
+
+echo "CLEANING UP SOURCE FILES"
+cd "$ROOT_PROJECT"; rm -rf ./*; rm -rf .*
+ls -a
