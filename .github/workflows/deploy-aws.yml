@@ -35,4 +35,4 @@ jobs:
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --deployment-group-name ${{ ENV.AWS_DEPLOY_GROUP }} \
             --file-exists-behavior OVERWRITE \
-            --githubLocation repository=${{ GITHUB_REPOSITORY }},commitId=${{ GITHUB_SHA }}
+            --githubLocation repository=$GITHUB_REPOSITORY,commitId=$GITHUB_SHA
