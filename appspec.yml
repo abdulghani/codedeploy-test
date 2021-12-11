@@ -1,4 +1,4 @@
-version: 0.1
+version: 0.0 # required as per aws codedeploy to be 0.0
 os: linux
 files:
   - source: /
