@@ -64,8 +64,4 @@ jobs:
           azure-pipeline-name: codedeploy-test 
           azure-devops-token: ${{ SECRETS.STAGE_AZURE_DEVOPS_TOKEN }}
           azure-pipeline-type: release
-          azure-pipeline-variables:
-            VARIABLE_ONE: deploy
-            VARIABLE_TWO: awesome
-            VARIABLE_THREE: 2037
     
