@@ -58,9 +58,14 @@ jobs:
       name: stage_azure
     steps:
       - name: trigger azure release
-        uses: abdulghani/pipelines@v0.0.3
+        uses: abdulghani/pipelines@v0.0.4
         with:
           azure-devops-project-url: https://dev.azure.com/pawjourr/pawjourr
           azure-pipeline-name: codedeploy-test 
           azure-devops-token: ${{ SECRETS.STAGE_AZURE_DEVOPS_TOKEN }}
+          azure-pipeline-type: release
+          azure-pipeline-variables:
+            VARIABLE_ONE: deploy
+            VARIABLE_TWO: awesome
+            VARIABLE_THREE: 2037
     
