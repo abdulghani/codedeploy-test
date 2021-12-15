@@ -64,5 +64,8 @@ jobs:
           azure-pipeline-name: codedeploy-test 
           azure-devops-token: ${{ SECRETS.STAGE_AZURE_DEVOPS_TOKEN }}
           azure-pipeline-monitor-deployment: true
-          azure-pipeline-variables:  '{"TEMP_VARIABLE": "hello world ghani", "GITHUB_SHA": "$GITHUB_SHA"}'
+          azure-pipeline-variables:  "{
+              \"TEMP_VARIABLE\": \"hello world ghani\", 
+              \"GITHUB_SHA\": \"\`$GITHUB_SHA\`\"
+            }"
     
