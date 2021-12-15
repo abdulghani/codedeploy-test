@@ -5,6 +5,8 @@ ROOT_PROJECT="$(pwd)"
 echo "RUNNING AZURE RELEASE"
 echo "WORKDIR ($ROOT_PROJECT)"
 
+echo "ECHO ENV VARIABLE ($TEMP_VARIABLE)"
+
 ### RUNNING SCRIPTS
 echo "BUILD DOCKER IMAGE"
 sudo docker build . -f ./dockerfile -t abdulghani/codedeploy-test
