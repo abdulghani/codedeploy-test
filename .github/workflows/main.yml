@@ -58,7 +58,7 @@ jobs:
       name: stage_azure
     steps:
       - name: trigger azure release
-        uses: abdulghani/pipelines@v0.0.5
+        uses: abdulghani/pipelines@v0.0.7
         with:
           azure-devops-project-url: https://dev.azure.com/pawjourr/pawjourr
           azure-pipeline-name: codedeploy-test 
