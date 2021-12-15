@@ -57,6 +57,8 @@ jobs:
     environment:
       name: stage_azure
     steps:
+      - name: test env secrets
+        run: echo "env variable here (${{ SECRETS.TEST_SECRET }})"
       - name: trigger azure release
         uses: abdulghani/pipelines@v0.0.7
         with:
