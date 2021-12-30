@@ -7,9 +7,8 @@
 
 IMAGE_NAME="abdulghani/codedeploy-test"
 REPO_NAME="${GITHUB_REPOSITORY//\//-}"
-ARCHIVE_NAME="$REPO_NAME$(date +%s)_$GITHUB_SHA.tar"
+ARCHIVE_NAME="$REPO_NAME-$(date +%s)-$GITHUB_SHA.tar"
 S3_ARCHIVE_PATH="s3://$DEPLOYMENT_BUCKET/$REPO_NAME/$ARCHIVE_NAME"
-
 
 echo "BUILDING DOCKER IMAGE..."
 docker build . -f ./dockerfile -t $IMAGE_NAME
