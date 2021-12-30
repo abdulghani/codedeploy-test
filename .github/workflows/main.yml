@@ -47,6 +47,8 @@ jobs:
         env:
           DEPLOYMENT_BUCKET: ${{ SECRETS.DEPLOYMENT_BUCKET }}
           DEPLOYMENT_SECRET_ID: ${{ SECRETS.DEPLOYMENT_SECRET_ID }}
+          GITHUB_REPOSITORY: ${{ GITHUB.REPOSITORY }}
+          GITHUB_SHA: ${{ GITHUB.SHA }}
         run: bash ./.scripts/upload-docker-image.sh
       - name: trigger aws codedeploy
         env:
