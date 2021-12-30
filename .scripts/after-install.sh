@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# set permission to write
-sudo chown -R ubuntu:ubuntu ~/app
-cd ~/app
+DOCKER_IMAGE=$(aws secretsmanager get-secret-value --secret-id fe-stage-deploy-image | jq -r '.SecretString')
+DWN_DOCKER_IMAGE="downloaded_docker_image.tar"
 
-sudo docker build . -f ./dockerfile -t abdulghani/codedeploy-test
+echo "DOWNLOADING DOCKER IMAGE ($DOCKER_IMAGE)..."
+aws s3 cp $DOCKER_IMAGE ./$DWN_DOCKER_IMAGE
+
+echo "LOADING DOCKER IMAGE..."
+docker load -i ./$DWN_DOCKER_IMAGE

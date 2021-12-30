@@ -43,11 +43,16 @@ jobs:
           aws-access-key-id: ${{ SECRETS.STAGE_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ SECRETS.STAGE_AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ SECRETS.STAGE_AWS_REGION }}
+      - name: Build docker image
+        env:
+          DEPLOYMENT_BUCKET: ${{ SECRETS.DEPLOYMENT_BUCKET }}
+          DEPLOYMENT_SECRET_ID: ${{ SECRETS.DEPLOYMENT_SECRET_ID }}
+        run: bash ./.scripts/upload-docker-image.sh
       - name: trigger aws codedeploy
         env:
           AWS_CODE_DEPLOY_APPLICATION_NAME: ${{ SECRETS.STAGE_AWS_CODE_DEPLOY_APP_NAME }}
           AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ SECRETS.STAGE_AWS_DEPLOY_GROUP }}
-          AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.OneAtATime
+          AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.HalfAtATime
         run: bash ./.scripts/code-deploy.sh
 
   deploy_azure:
