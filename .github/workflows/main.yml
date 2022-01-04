@@ -87,6 +87,7 @@ jobs:
           AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.AllAtOnce
           AWS_CODE_DEPLOY_S3_BUCKET: ${{ SECRETS.DEPLOYMENT_BUCKET }}
           AWS_CODE_DEPLOY_APP_SOURCE: .
+          AWS_CODE_DEPLOY_S3_FILENAME: "hello-world.zip"
         run: bash ./node_modules/.bin/aws-code-deploy
 
   deploy_azure:
