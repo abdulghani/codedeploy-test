@@ -78,12 +78,15 @@ jobs:
           GITHUB_REPOSITORY: ${{ GITHUB.REPOSITORY }}
           GITHUB_SHA: ${{ GITHUB.SHA }}
         run: bash ./.scripts/upload-docker-image.sh
+      - name: install aws-codedeploy npm
+        run: npm install aws-code-deploy
       - name: trigger aws codedeploy
         env:
           AWS_CODE_DEPLOY_APPLICATION_NAME: ${{ SECRETS.AWS_CODE_DEPLOY_APP_NAME }}
           AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ SECRETS.AWS_DEPLOY_GROUP_NAME }}
           AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.AllAtOnce
-        run: bash ./.scripts/code-deploy.sh
+          AWS_CODE_DEPLOY_S3_BUCKET: ${{ SECRETS.DEPLOYMENT_BUCKET }}
+        run: bash ./node_modules/.bin/aws-code-deploy
 
   deploy_azure:
     runs-on: ubuntu-latest
