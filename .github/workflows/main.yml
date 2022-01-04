@@ -26,8 +26,8 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: install dependencies
         run: npm install
-      - name: run tests
-        run: npm run test
+      # - name: run tests
+      #   run: npm run test
 
   deploy_staging:
     runs-on: ubuntu-latest
@@ -86,6 +86,7 @@ jobs:
           AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ SECRETS.AWS_DEPLOY_GROUP_NAME }}
           AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.AllAtOnce
           AWS_CODE_DEPLOY_S3_BUCKET: ${{ SECRETS.DEPLOYMENT_BUCKET }}
+          AWS_CODE_DEPLOY_APP_SOURCE: .
         run: bash ./node_modules/.bin/aws-code-deploy
 
   deploy_azure:
