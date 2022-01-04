@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_IMAGE=$(aws secretsmanager get-secret-value --secret-id fe-stage-deploy-image | jq -r '.SecretString')
+DOCKER_IMAGE=$(aws secretsmanager get-secret-value --secret-id fe-deployed-image | jq -r '.SecretString')
 DWN_DOCKER_IMAGE="downloaded_docker_image.tar"
 
 echo "DOWNLOADING DOCKER IMAGE ($DOCKER_IMAGE)..."
