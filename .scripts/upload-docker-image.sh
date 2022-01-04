@@ -22,4 +22,7 @@ aws s3 cp ./$ARCHIVE_NAME $S3_ARCHIVE_PATH
 echo "UPDATING SECRETS MANAGER IMAGE..."
 aws secretsmanager update-secret --secret-id $DEPLOYMENT_SECRET_ID --secret-string $S3_ARCHIVE_PATH
 
+echo "CLEANUP DOCKER IMAGE"
+rm -rf ./$ARCHIVE_NAME
+
 echo "DONE"
