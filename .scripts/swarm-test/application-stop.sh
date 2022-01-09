@@ -14,7 +14,7 @@ if [ $IS_SWARM_LEADER = 'true' ]; then
 else
     # join swarm cluster
     JOIN_COMMAND=$(aws secretsmanager get-secret-value --secret-id $SECRETS_ID | jq -r '.SecretString')
-    eval $JOIN_COMMAND
+    eval "$JOIN_COMMAND"
 fi
 
 # DRAIN TASKS
