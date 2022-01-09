@@ -6,9 +6,6 @@ STACK_NAME="swarm-test"
 NODE_ID=$(docker node ls | grep -Po "^.*(?=\s+\*\s+)")
 docker node update --availability active "$NODE_ID"
 
-# RESTART SERVICE IF NODE IS MANAGER
-IS_SWARM_LEADER=$(docker node inspect self | jq -r ".[0].ManagerStatus.Leader")
-
 # RECURSIVE FUNCTION
 IS_RESTARTED=false
 create_stack() {
@@ -19,6 +16,9 @@ create_stack() {
         create_stack
     fi
 }
+
+# RESTART SERVICE IF NODE IS MANAGER
+IS_SWARM_LEADER=$(docker node inspect self | jq -r ".[0].ManagerStatus.Leader")
 
 # RECREATE STACK IF NODE IS MANAGER
 if [ $IS_SWARM_LEADER = true ]; then
