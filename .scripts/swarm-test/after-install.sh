@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # AfterInstall LIFECYCLE
-WORKDIR="~/project"
 
 # UPDATE/LOAD IMAGE
-cd ~/project # GO TO WORKDIR
+cd ~/project
 
 docker system prune --force
 
