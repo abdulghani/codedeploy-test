@@ -2,9 +2,9 @@ version: 0.0 # required as per aws codedeploy to be 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/app
+    destination: /home/ubuntu/project
 permissions:
-  - object: /home/ubuntu/app
+  - object: /home/ubuntu/project
     owner: ubuntu
     group: ubuntu
     type:
@@ -14,11 +14,17 @@ permissions:
 # READ CODEDEPLOY LIFECYCLE
 # https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html
 hooks:
+  ApplicationStop:
+    - location: ./.scripts/swarm-test/application-stop.sh
+      runas: ubuntu
+  BeforeInstall:
+    - location: ./.scripts/swarm-test/before-install.sh
+      runas: ubuntu
   AfterInstall:
-    - location: ./.scripts/after-install.sh
+    - location: ./.scripts/swarm-test/after-install.sh
       runas: ubuntu
   ApplicationStart:
-    - location: ./.scripts/application-start.sh
+    - location: ./.scripts/swarm-test/application-start.sh
       runas: ubuntu
   ValidateService:
     - location: ./.scripts/cleanup.sh

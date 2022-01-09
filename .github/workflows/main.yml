@@ -71,24 +71,24 @@ jobs:
           aws-access-key-id: ${{ SECRETS.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ SECRETS.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ SECRETS.AWS_REGION }}
+      - name: install aws-codedeploy npm
+        run: npm install -g aws-code-deploy
       - name: Build docker image
         env:
           DEPLOYMENT_BUCKET: ${{ SECRETS.DEPLOYMENT_BUCKET }}
           DEPLOYMENT_SECRET_ID: ${{ SECRETS.DEPLOYMENT_SECRET_ID }}
           GITHUB_REPOSITORY: ${{ GITHUB.REPOSITORY }}
           GITHUB_SHA: ${{ GITHUB.SHA }}
-        run: bash ./.scripts/upload-docker-image.sh
-      - name: install aws-codedeploy npm
-        run: npm install aws-code-deploy
+        run: bash ./.scripts/build-docker-image.sh
       - name: trigger aws codedeploy
         env:
           AWS_CODE_DEPLOY_APPLICATION_NAME: ${{ SECRETS.AWS_CODE_DEPLOY_APP_NAME }}
           AWS_CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ${{ SECRETS.AWS_DEPLOY_GROUP_NAME }}
-          AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.AllAtOnce
+          AWS_CODE_DEPLOY_DEPLOYMENT_CONFIG_NAME: CodeDeployDefault.OneAtATime
           AWS_CODE_DEPLOY_S3_BUCKET: ${{ SECRETS.DEPLOYMENT_BUCKET }}
           AWS_CODE_DEPLOY_APP_SOURCE: .
-          AWS_CODE_DEPLOY_S3_FILENAME: "abdulghani-codedeploy-test-${{ GITHUB.RUN_ID }}-${{ GITHUB.SHA }}.zip"
-        run: bash ./node_modules/.bin/aws-code-deploy
+          AWS_CODE_DEPLOY_S3_FILENAME: "abdulghani-codedeploy-test-${{ GITHUB.RUN_NUMBER }}-${{ GITHUB.SHA }}.zip"
+        run: aws-code-deploy
 
   deploy_azure:
     runs-on: ubuntu-latest
