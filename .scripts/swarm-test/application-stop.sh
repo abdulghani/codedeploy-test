@@ -20,10 +20,6 @@ else
     # join swarm cluster
     JOIN_COMMAND=$(aws secretsmanager get-secret-value --secret-id "$SECRETS_ID" | jq -r '.SecretString')
     eval "$JOIN_COMMAND"
-
-    echo "JOIN COMMAND ($JOIN_COMMAND)"
-
-    exit 1
 fi
 
-exit 1
+echo "DONE"
