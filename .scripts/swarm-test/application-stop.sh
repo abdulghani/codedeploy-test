@@ -14,7 +14,7 @@ docker node update --availability drain "$NODE_ID" || echo "NODE IS NOT CONNECTE
 # JOIN OR UPDATE JOIN KEY
 if [ $IS_SWARM_LEADER = true ]; then
     # update secrets manager join command
-    JOIN_COMMAND=$(docker swarm join-token manager | grep -i -Po '(?!\s+)docker swarm join --token .*(?!\s+$)')
+    JOIN_COMMAND=$(docker swarm join-token worker | grep -i -Po '(?!\s+)docker swarm join --token .*(?!\s+$)')
     aws secretsmanager update-secret --secret-id "$SECRETS_ID" --secret-string "$JOIN_COMMAND"
 else
     # join swarm cluster
