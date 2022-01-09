@@ -12,6 +12,6 @@ echo "BUILDING DOCKER IMAGE..."
 docker build . -f ./dockerfile -t $IMAGE_NAME
 
 echo "ARCHIVING DOCKER IMAGE..."
-docker save -o ./$IMAGE_FILE
+docker save -o ./$IMAGE_FILE $IMAGE_NAME
 
 echo "DONE"

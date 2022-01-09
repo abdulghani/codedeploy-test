@@ -4,7 +4,7 @@
 WORKDIR="~/project"
 
 # UPDATE/LOAD IMAGE
-cd $WORKDIR # GO TO WORKDIR
+cd "$WORKDIR" # GO TO WORKDIR
 
 docker system prune --force
 

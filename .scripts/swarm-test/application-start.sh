@@ -11,6 +11,6 @@ docker node update --availability active $NODE_ID
 IS_SWARM_LEADER=$(docker node inspect self | jq -r ".[0].ManagerStatus.Leader")
 
 if [ $IS_SWARM_LEADER = 'true' ]; then
-    cd $WORKDIR
+    cd "$WORKDIR"
     docker stack deploy --compose-file ./docker-compose.yml $STACK_NAME
 fi
